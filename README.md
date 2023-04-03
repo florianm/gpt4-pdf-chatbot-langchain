@@ -44,6 +44,10 @@ PINECONE_INDEX_NAME=
 - Visit [openai](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key) to retrieve API keys and insert into your `.env` file.
 - Visit [pinecone](https://pinecone.io/) to create and retrieve your API keys, and also retrieve your environment and index name from the dashboard.
 
+  - The index name must be lowercase.
+  - The environment will be preset on the free plan. You need to upgrade your plan to change the environment.
+  - With the default OpenAI embeddings, you need to set the dimensions to 1536.
+
 4. In the `config` folder, replace the `PINECONE_NAME_SPACE` with a `namespace` where you'd like to store your embeddings on Pinecone when you run `pnpm run ingest`. This namespace will later be used for queries and retrieval.
 
 5. In `utils/makechain.ts` chain change the `QA_PROMPT` for your own usecase. Change `modelName` in `new OpenAIChat` to `gpt-3.5-turbo`, if you don't have access to `gpt-4`. Please verify outside this repo that you have access to `gpt-4`, otherwise the application will not work with it.
@@ -90,3 +94,10 @@ In general, keep an eye out in the `issues` and `discussions` section of this re
 ## Credit
 
 Frontend of this repo is inspired by [langchain-chat-nextjs](https://github.com/zahidkhawaja/langchain-chat-nextjs)
+
+## Customisations
+* Install wkhtmltopdf `sudo apt install wkhtmltopdf`
+* Add `scripts/webscraper.ts`
+
+  * Test: `wkhtmltopdf https://docs.getodk.org odk.pdf`
+* Convert a website to PDFs: `npm run web2pdf -- --url https://docs.getodk.org --destination docs/odk`
